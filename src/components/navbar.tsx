@@ -11,7 +11,6 @@ import {
   NavbarMenuToggle,
   Navbar as NextUINavbar,
 } from "@nextui-org/navbar";
-// import { Image } from "@nextui-org/react";
 import { link as linkStyles } from "@nextui-org/theme";
 import clsx from "clsx";
 import NextLink from "next/link";
@@ -20,6 +19,7 @@ import { SearchIcon } from "@/src/components/icons";
 import { ThemeSwitch } from "@/src/components/theme-switch";
 import { siteConfig } from "@/src/config/site";
 import Image from "next/image";
+import NavbarDropdown from "./UI/NavbarDropdown";
 
 export const Navbar = () => {
   const searchInput = (
@@ -87,6 +87,9 @@ export const Navbar = () => {
       >
         <NavbarItem className="hidden sm:flex gap-2">
           <ThemeSwitch />
+        </NavbarItem>
+        <NavbarItem className="hidden sm:flex gap-2">
+          <NavbarDropdown />
         </NavbarItem>
       </NavbarContent>
 

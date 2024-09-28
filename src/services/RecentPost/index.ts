@@ -5,8 +5,6 @@ export const getRecentPost = async () => {
     const res = await fetch(`${envConfig.baseApi}/items?sortBy=-createdAt&limit=8`, {
         cache: 'no-store', // ensures that no cache is used for this fetch
     });
-
-    await delay(5000)
     return res.json();
 
 };
