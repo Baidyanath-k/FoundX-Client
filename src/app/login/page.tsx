@@ -3,14 +3,23 @@
 import FormInput from "@/src/components/FXForm/FormInput";
 import FormWrapper from "@/src/components/FXForm/FormWrapper";
 import PasswordInput from "@/src/components/FXForm/PasswordInput";
+import { useUserLoginTanStack } from "@/src/hooks/authTenstack.hook";
 import loginValidationSchema from "@/src/ZodValidationSchema/loginSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@nextui-org/button";
 import Link from "next/link";
+import { FieldValues, SubmitHandler } from "react-hook-form";
 
 const Login = () => {
-  const onSubmit = (data) => {
-    console.log(data);
+  const { mutate: handleUserLogin } = useUserLoginTanStack();
+
+  const onSubmit: SubmitHandler<FieldValues> = (data) => {
+    const userData = {
+      ...data,
+    };
+
+    console.log(userData);
+    handleUserLogin(userData);
   };
   return (
     <div className="flex h-screen w-full flex-col items-center justify-center">
@@ -25,16 +34,16 @@ const Login = () => {
             <FormInput
               name="email"
               label="Enter Your Email"
-              key="outside"
+              inputKey="outside"
               labelPlacement="outside"
-              type="email"
+              type="text"
             />
           </div>
           <div className="py-3">
             <PasswordInput
               name="password"
               label="Password"
-              key="outside"
+              inputKey="outside"
               labelPlacement="outside"
             />
           </div>

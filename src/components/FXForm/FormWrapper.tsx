@@ -30,7 +30,9 @@ const FormWrapper = ({
     formConfig["resolver"] = resolver;
   }
 
+  // const methods = useForm({ defaultValues, resolver });
   const methods = useForm(formConfig);
+
   const submitHandler = methods.handleSubmit;
   return (
     <FormProvider {...methods}>

@@ -6,7 +6,7 @@ import { EyeFilledIcon } from "./Icon/EyeFilledIcon";
 import { EyeSlashFilledIcon } from "./Icon/EyeSlashFilledIcon";
 
 interface TProps {
-  key: "inside" | "outside" | "outside-left";
+  inputKey: "inside" | "outside" | "outside-left" | undefined;
   labelPlacement: "inside" | "outside" | "outside-left";
   name: string;
   label: string;
@@ -20,7 +20,7 @@ interface TProps {
 const PasswordInput = ({
   variant = "bordered",
   size = "md",
-  key,
+  inputKey,
   labelPlacement,
   required = false,
   label,
@@ -40,14 +40,15 @@ const PasswordInput = ({
     <Input
       {...register(name)}
       isInvalid={!!errors[name]}
-      errorMessage={errors[name] ? (errors[name].message as string) : ""}
+      errorMessage={ errors[name] ? (errors[name].message as string) : ""
+      }
       // type={type}
       label={label}
       placeholder={placeholder}
       variant={variant}
       size={size}
       required={required}
-      key={key}
+      key={inputKey}
       labelPlacement={labelPlacement}
       endContent={
         <button
