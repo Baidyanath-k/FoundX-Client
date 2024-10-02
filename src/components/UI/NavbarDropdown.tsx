@@ -1,5 +1,6 @@
 "use client";
 
+import { Logout } from "@/src/services/Logout";
 import { Avatar } from "@nextui-org/avatar";
 import {
   Dropdown,
@@ -16,6 +17,12 @@ const NavbarDropdown = () => {
     router.push(pathName);
   };
 
+  const handleLogOut = () => {
+    Logout();
+
+    router.push("/");
+  };
+
   return (
     <Dropdown>
       <DropdownTrigger>
@@ -25,14 +32,21 @@ const NavbarDropdown = () => {
         <DropdownItem onClick={() => handleNavigation("/profile")}>
           Profile
         </DropdownItem>
-        <DropdownItem onClick={() => handleNavigation("/profile/about")}>About</DropdownItem>
-        <DropdownItem onClick={() => handleNavigation("/profile/claim-requests")}>Claim Requests</DropdownItem>
+        <DropdownItem onClick={() => handleNavigation("/profile/about")}>
+          About
+        </DropdownItem>
+        <DropdownItem
+          onClick={() => handleNavigation("/profile/claim-requests")}
+        >
+          Claim Requests
+        </DropdownItem>
         <DropdownItem onClick={() => handleNavigation("/profile/create-post")}>
           Post-Create
         </DropdownItem>
         <DropdownItem onClick={() => handleNavigation("/profile/settings")}>
           Settings
         </DropdownItem>
+        <DropdownItem onClick={handleLogOut}>Logout</DropdownItem>
       </DropdownMenu>
     </Dropdown>
   );

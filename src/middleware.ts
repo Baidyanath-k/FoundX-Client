@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { getCurrentUserFromJWT } from "./services/jwtDecode";
 
 const AuthRoutes = ["/login", "/registration"];
 
@@ -10,25 +11,18 @@ const roleBasedRoutes = {
 };
 
 // This function can be marked `async` if using `await` inside
-export function middleware(request: NextRequest) {
+export async function middleware(request: NextRequest) {
     const { pathname } = request.nextUrl;
 
-    // console.log(pathname);
 
-    // const user = {
-    //     name: "Mir",
-    //     token: "adsf asda",
-    //     role: "USER",
-    // };
-
-    const user = undefined;
+    const user = await getCurrentUserFromJWT();
 
     if (!user) {
         // have no user then go Login page otherwise not
         if (AuthRoutes.includes(pathname)) {
             return NextResponse.next();
         } else {
-            return NextResponse.redirect(new URL("/login", request.url));
+            return NextResponse.redirect(new URL(`/login?redirect=${pathname}`, request.url));
         }
     }
 
@@ -45,5 +39,5 @@ export function middleware(request: NextRequest) {
 
 // See "Matching Paths" below to learn more
 export const config = {
-    matcher: ["/profile", "/admin", "/login", "/registration"],
+    matcher: ["/profile", "/profile/:page*", "/admin", "/login", "/registration"],
 };

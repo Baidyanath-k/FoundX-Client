@@ -4,11 +4,9 @@ import FormInput from "@/src/components/FXForm/FormInput";
 import FormWrapper from "@/src/components/FXForm/FormWrapper";
 import PasswordInput from "@/src/components/FXForm/PasswordInput";
 import { useUserRegistration } from "@/src/hooks/authTenstack.hook";
-// import { registrationUserService } from "@/src/services/registration";
 import registerValidationSchema from "@/src/ZodValidationSchema/registratioSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Button } from "@nextui-org/button";
-import { useMutation } from "@tanstack/react-query";
 import Link from "next/link";
 import { FieldValues, SubmitHandler } from "react-hook-form";
 
